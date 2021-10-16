@@ -17,6 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
+import com.helper.File_Reader_Manager;
 import com.sdp.Page_Object_Manager;
 
 public class Dress_Automation extends Base_Class {
@@ -25,17 +26,21 @@ public class Dress_Automation extends Base_Class {
 
 	public static Page_Object_Manager pom = new Page_Object_Manager(driver);
 
-	public static void main(String[] args) throws AWTException, IOException, InterruptedException {
+	public static void main(String[] args) throws Throwable {
 
 		waiting_time(20);
+		
+		String url = File_Reader_Manager.getinstanceFRM().getinstanceCR().geturl();
 
-		get_url("http://automationpractice.com/index.php");
+		get_url(url);
 
 		clickbutton(pom.getinstanceHP().getSigninbt());
 
-		inputboxvalue(pom.getinstancesiginin().getUsername(), "rubinraj7@gmail.com");
+		String email_address = File_Reader_Manager.getinstanceFRM().getinstanceCR().getemail_address();
+		inputboxvalue(pom.getinstancesiginin().getUsername(),email_address);
 
-		inputboxvalue(pom.getinstancesiginin().getPassword(), "rubin1307");
+		String password = File_Reader_Manager.getinstanceFRM().getinstanceCR().getpassword();
+		inputboxvalue(pom.getinstancesiginin().getPassword(),password);
 
 		clickbutton(pom.getinstancesiginin().getSignin_btn());
 
